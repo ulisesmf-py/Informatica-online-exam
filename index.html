@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examen de Programación C++ · Black IA</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Tabler Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- WELCOME / LOGIN SCREEN -->
+  <div id="welcome-screen" class="screen active">
+    <div class="welcome-card">
+      <div class="brand">
+        <svg class="brand-logo" width="32" height="32" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="10" fill="#0a1628" stroke="#3b82f6" stroke-width="1.2"/>
+          <path d="M6 15 L9 7 L11 12 L13 9 L16 15" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="11" cy="7" r="1.2" fill="#60a5fa"/>
+        </svg>
+        <span class="brand-name">BLACK AI</span>
+      </div>
+      <h1 class="welcome-title">Examen de Programación</h1>
+      <p class="welcome-subtitle">Ingresa tu nombre completo para iniciar el examen en línea de C++.</p>
+      
+      <div class="form-group">
+        <label for="student-name">Nombre Completo del Alumno</label>
+        <input type="text" id="student-name" placeholder="Ej. Juan Pérez García" autocomplete="off">
+        <div id="welcome-error" class="error-message"><i class="ti ti-alert-circle"></i> Por favor ingresa tu nombre completo para comenzar.</div>
+      </div>
+      
+      <button id="start-exam-btn" class="btn btn-primary btn-full">
+        <span>Comenzar Examen</span> <i class="ti ti-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- EXAM SCREEN -->
+  <div id="exam-screen" class="screen">
+    <!-- Top Bar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <svg class="brand-logo" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="10" fill="#0a1628" stroke="#3b82f6" stroke-width="1.2"/>
+          <path d="M6 15 L9 7 L11 12 L13 9 L16 15" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="11" cy="7" r="1.2" fill="#60a5fa"/>
+        </svg>
+        <span class="topbar-brand">Black IA</span>
+        <div class="divider-y"></div>
+        <span class="topbar-title">Evaluación de C++</span>
+      </div>
+      <div class="topbar-right">
+        <div class="student-badge">
+          <i class="ti ti-user"></i>
+          <span id="student-badge-name">Estudiante</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="exam-container">
+      <!-- Stepper / Progress Bar -->
+      <div class="stepper-container">
+        <div class="stepper">
+          <div class="step active" data-step="1">
+            <span class="step-num">I</span>
+            <span class="step-label">Preguntas</span>
+          </div>
+          <div class="step" data-step="2">
+            <span class="step-num">II</span>
+            <span class="step-label">Columnas</span>
+          </div>
+          <div class="step" data-step="3">
+            <span class="step-num">III</span>
+            <span class="step-label">Explicación</span>
+          </div>
+          <div class="step" data-step="4">
+            <span class="step-num">IV</span>
+            <span class="step-label">Salida</span>
+          </div>
+          <div class="step" data-step="5">
+            <span class="step-num">V</span>
+            <span class="step-label">Escritura</span>
+          </div>
+        </div>
+        <div class="progress-track">
+          <div id="progress-indicator" class="progress-bar" style="width: 20%;"></div>
+        </div>
+      </div>
+
+      <!-- SECTIONS CONTAINER -->
+      <form id="exam-form">
+        <!-- SECTION I: OPTION TILES -->
+        <section id="section-1" class="exam-section active">
+          <div class="section-header">
+            <h2>I. Responde las preguntas</h2>
+            <p>Valor por reactivo: <strong>1 punto</strong>. Valor total de la sección: <strong>6 puntos</strong>.</p>
+          </div>
+          
+          <div class="questions-list">
+            <!-- Q1 -->
+            <div class="question-card">
+              <span class="q-number">Pregunta 1</span>
+              <h3>¿Cuál es el primer paso de la metodología de solución de problemas?</h3>
+              <div class="option-grid">
+                <label class="option-tile">
+                  <input type="radio" name="q1" value="a">
+                  <span class="option-letter">a</span>
+                  <span class="option-text">Codificación</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q1" value="b">
+                  <span class="option-letter">b</span>
+                  <span class="option-text">Identificar el problema</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q1" value="c">
+                  <span class="option-letter">c</span>
+                  <span class="option-text">Ejecutar el programa</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q1" value="d">
+                  <span class="option-letter">d</span>
+                  <span class="option-text">Depuración</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question-card">
+              <span class="q-number">Pregunta 2</span>
+              <h3>¿Qué instrucción se utiliza para mostrar información en pantalla?</h3>
+              <div class="option-grid">
+                <label class="option-tile">
+                  <input type="radio" name="q2" value="a">
+                  <span class="option-letter">a</span>
+                  <span class="option-text">cin</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q2" value="b">
+                  <span class="option-letter">b</span>
+                  <span class="option-text">float</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q2" value="c">
+                  <span class="option-letter">c</span>
+                  <span class="option-text">cout</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q2" value="d">
+                  <span class="option-letter">d</span>
+                  <span class="option-text">string</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question-card">
+              <span class="q-number">Pregunta 3</span>
+              <h3>¿Qué instrucción permite capturar datos del usuario?</h3>
+              <div class="option-grid">
+                <label class="option-tile">
+                  <input type="radio" name="q3" value="a">
+                  <span class="option-letter">a</span>
+                  <span class="option-text">cout</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q3" value="b">
+                  <span class="option-letter">b</span>
+                  <span class="option-text">cin</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q3" value="c">
+                  <span class="option-letter">c</span>
+                  <span class="option-text">if</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q3" value="d">
+                  <span class="option-letter">d</span>
+                  <span class="option-text">for</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question-card">
+              <span class="q-number">Pregunta 4</span>
+              <h3>¿Cuál es un tipo de dato entero?</h3>
+              <div class="option-grid">
+                <label class="option-tile">
+                  <input type="radio" name="q4" value="a">
+                  <span class="option-letter">a</span>
+                  <span class="option-text">float</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q4" value="b">
+                  <span class="option-letter">b</span>
+                  <span class="option-text">string</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q4" value="c">
+                  <span class="option-letter">c</span>
+                  <span class="option-text">int</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q4" value="d">
+                  <span class="option-letter">d</span>
+                  <span class="option-text">char</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question-card">
+              <span class="q-number">Pregunta 5</span>
+              <h3>¿Qué operador se utiliza para multiplicar?</h3>
+              <div class="option-grid">
+                <label class="option-tile">
+                  <input type="radio" name="q5" value="a">
+                  <span class="option-letter">a</span>
+                  <span class="option-text">+</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q5" value="b">
+                  <span class="option-letter">b</span>
+                  <span class="option-text">/</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q5" value="c">
+                  <span class="option-letter">c</span>
+                  <span class="option-text">*</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q5" value="d">
+                  <span class="option-letter">d</span>
+                  <span class="option-text">%</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="question-card">
+              <span class="q-number">Pregunta 6</span>
+              <h3>¿Qué estructura se utiliza para repetir instrucciones?</h3>
+              <div class="option-grid">
+                <label class="option-tile">
+                  <input type="radio" name="q6" value="a">
+                  <span class="option-letter">a</span>
+                  <span class="option-text">cout</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q6" value="b">
+                  <span class="option-letter">b</span>
+                  <span class="option-text">cin</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q6" value="c">
+                  <span class="option-letter">c</span>
+                  <span class="option-text">if</span>
+                </label>
+                <label class="option-tile">
+                  <input type="radio" name="q6" value="d">
+                  <span class="option-letter">d</span>
+                  <span class="option-text">for</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION II: MATCH COLUMNS -->
+        <section id="section-2" class="exam-section">
+          <div class="section-header">
+            <h2>II. Relaciona las columnas</h2>
+            <p>Valor por reactivo: <strong>2 puntos</strong>. Valor total de la sección: <strong>8 puntos</strong>.</p>
+          </div>
+
+          <div class="question-card">
+            <p class="instruction-text">Selecciona el concepto correspondiente para cada elemento de código C++ listado a la izquierda:</p>
+            
+            <div class="match-layout">
+              <div class="match-headers">
+                <span class="match-h">Código / Elemento</span>
+                <span class="match-h">Respuesta</span>
+                <span class="match-h">Concepto Relacionado</span>
+              </div>
+              
+              <!-- Match Row 7 -->
+              <div class="match-row">
+                <div class="match-col-code">
+                  <span class="q-badge">7</span>
+                  <code>int edad;</code>
+                </div>
+                <div class="match-col-select">
+                  <select name="q7" id="match-q7" class="match-select">
+                    <option value="" disabled selected>—</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                  </select>
+                </div>
+                <div class="match-col-concept">
+                  <span class="concept-letter">A</span>
+                  <span class="concept-text">Salida de datos</span>
+                </div>
+              </div>
+
+              <!-- Match Row 8 -->
+              <div class="match-row">
+                <div class="match-col-code">
+                  <span class="q-badge">8</span>
+                  <code>cout &lt;&lt; "Hola";</code>
+                </div>
+                <div class="match-col-select">
+                  <select name="q8" id="match-q8" class="match-select">
+                    <option value="" disabled selected>—</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                  </select>
+                </div>
+                <div class="match-col-concept">
+                  <span class="concept-letter">B</span>
+                  <span class="concept-text">Variable</span>
+                </div>
+              </div>
+
+              <!-- Match Row 9 -->
+              <div class="match-row">
+                <div class="match-col-code">
+                  <span class="q-badge">9</span>
+                  <code>cin &gt;&gt; edad;</code>
+                </div>
+                <div class="match-col-select">
+                  <select name="q9" id="match-q9" class="match-select">
+                    <option value="" disabled selected>—</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                  </select>
+                </div>
+                <div class="match-col-concept">
+                  <span class="concept-letter">C</span>
+                  <span class="concept-text">Entrada de datos</span>
+                </div>
+              </div>
+
+              <!-- Match Row 10 -->
+              <div class="match-row">
+                <div class="match-col-code">
+                  <span class="q-badge">10</span>
+                  <code>if(edad &gt;= 18)</code>
+                </div>
+                <div class="match-col-select">
+                  <select name="q10" id="match-q10" class="match-select">
+                    <option value="" disabled selected>—</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                  </select>
+                </div>
+                <div class="match-col-concept">
+                  <span class="concept-letter">D</span>
+                  <span class="concept-text">Condicional</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION III: ANALYZE AND EXPLAIN -->
+        <section id="section-3" class="exam-section">
+          <div class="section-header">
+            <h2>III. Analiza el código y menciona qué hace cada parte</h2>
+            <p>Valor por reactivo: <strong>2 puntos</strong>. Valor total de la sección: <strong>8 puntos</strong>.</p>
+          </div>
+
+          <div class="code-explain-layout">
+            <!-- Left: Code Snippet Display -->
+            <div class="code-display-card">
+              <div class="code-card-header">
+                <div class="window-dots">
+                  <span class="dot-r"></span>
+                  <span class="dot-y"></span>
+                  <span class="dot-g"></span>
+                </div>
+                <span class="filename">programa.cpp</span>
+              </div>
+              <pre class="code-content"><code><span class="pp">#include &lt;iostream&gt;</span>
+<span class="kw">using namespace</span> <span class="pt">std</span>;
+
+<span class="ty">int</span> <span class="fn">main</span>(){
+    <span class="ty">int</span> <span class="vr">edad</span>;                     <span class="cm">// Línea 11</span>
+    <span class="pt">cout</span> &lt;&lt; <span class="st">"Ingresa tu edad: "</span>; <span class="cm">// Línea 12</span>
+    <span class="pt">cin</span> &gt;&gt; <span class="vr">edad</span>;                  <span class="cm">// Línea 13</span>
+    
+    <span class="kw">if</span>(<span class="vr">edad</span> &gt;= <span class="nm">18</span>){              <span class="cm">// Línea 14</span>
+        <span class="pt">cout</span> &lt;&lt; <span class="st">"Mayor de edad"</span>;
+    }
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</code></pre>
+            </div>
+
+            <!-- Right: Questions inputs -->
+            <div class="explain-inputs">
+              <!-- Q11 -->
+              <div class="explain-field">
+                <label for="q11"><span class="q-badge">11</span> ¿Qué hace la instrucción <code>int edad;</code>?</label>
+                <textarea id="q11" name="q11" rows="2" placeholder="Escribe tu respuesta aquí..."></textarea>
+              </div>
+
+              <!-- Q12 -->
+              <div class="explain-field">
+                <label for="q12"><span class="q-badge">12</span> ¿Qué hace la instrucción <code>cout &lt;&lt; "Ingresa tu edad:";</code>?</label>
+                <textarea id="q12" name="q12" rows="2" placeholder="Escribe tu respuesta aquí..."></textarea>
+              </div>
+
+              <!-- Q13 -->
+              <div class="explain-field">
+                <label for="q13"><span class="q-badge">13</span> ¿Qué hace la instrucción <code>cin &gt;&gt; edad;</code>?</label>
+                <textarea id="q13" name="q13" rows="2" placeholder="Escribe tu respuesta aquí..."></textarea>
+              </div>
+
+              <!-- Q14 -->
+              <div class="explain-field">
+                <label for="q14"><span class="q-badge">14</span> ¿Qué hace la instrucción <code>if(edad &gt;= 18)</code>?</label>
+                <textarea id="q14" name="q14" rows="2" placeholder="Escribe tu respuesta aquí..."></textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION IV: PREDICT OUTPUT -->
+        <section id="section-4" class="exam-section">
+          <div class="section-header">
+            <h2>IV. Analiza el código y responde qué mostrará en pantalla</h2>
+            <p>Valor por reactivo: <strong>2 puntos</strong>. Valor total de la sección: <strong>6 puntos</strong>.</p>
+          </div>
+
+          <div class="predict-grid">
+            <!-- Q15 -->
+            <div class="predict-card">
+              <span class="q-badge-abs">15</span>
+              <div class="code-display-card mini">
+                <pre class="code-content"><code><span class="ty">int</span> <span class="vr">a</span> = <span class="nm">5</span>;
+<span class="ty">int</span> <span class="vr">b</span> = <span class="nm">3</span>;
+<span class="pt">cout</span> &lt;&lt; <span class="vr">a</span> + <span class="vr">b</span>;</code></pre>
+              </div>
+              <div class="form-group">
+                <label for="q15">¿Qué resultado mostrará este programa?</label>
+                <input type="text" id="q15" name="q15" placeholder="Escribe el resultado..." class="mono-input">
+              </div>
+            </div>
+
+            <!-- Q16 -->
+            <div class="predict-card">
+              <span class="q-badge-abs">16</span>
+              <div class="code-display-card mini">
+                <pre class="code-content"><code><span class="ty">int</span> <span class="vr">edad</span> = <span class="nm">20</span>;
+<span class="kw">if</span>(<span class="vr">edad</span> &gt;= <span class="nm">18</span>){
+    <span class="pt">cout</span> &lt;&lt; <span class="st">"Adulto"</span>;
+}</code></pre>
+              </div>
+              <div class="form-group">
+                <label for="q16">¿Qué resultado mostrará este programa?</label>
+                <input type="text" id="q16" name="q16" placeholder="Escribe el resultado..." class="mono-input">
+              </div>
+            </div>
+
+            <!-- Q17 -->
+            <div class="predict-card">
+              <span class="q-badge-abs">17</span>
+              <div class="code-display-card mini">
+                <pre class="code-content"><code><span class="kw">for</span>(<span class="ty">int</span> <span class="vr">i</span> = <span class="nm">1</span>; <span class="vr">i</span> &lt;= <span class="nm">5</span>; <span class="vr">i</span>++){
+    <span class="pt">cout</span> &lt;&lt; <span class="vr">i</span>;
+}</code></pre>
+              </div>
+              <div class="form-group">
+                <label for="q17">¿Cuántas veces se ejecuta el ciclo?</label>
+                <input type="text" id="q17" name="q17" placeholder="Número de ejecuciones..." class="mono-input">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION V: WRITE CODE -->
+        <section id="section-5" class="exam-section">
+          <div class="section-header">
+            <h2>V. Escribe un código completo para cada problema</h2>
+            <p>Valor por reactivo: <strong>10 puntos</strong>. Valor total de la sección: <strong>30 puntos</strong>.</p>
+          </div>
+
+          <div class="coding-layout">
+            <!-- Q18 -->
+            <div class="coding-card">
+              <div class="coding-card-title">
+                <span class="q-badge">18</span>
+                <p>Escribe un programa que solicite la información de <strong>Nombre</strong>, <strong>edad</strong> y <strong>país</strong> del usuario y le muestre un resumen de los datos.</p>
+              </div>
+              <div class="editor-simulator">
+                <div class="editor-header">
+                  <span class="editor-title"><i class="ti ti-brand-cpp"></i> programa1.cpp</span>
+                  <span class="editor-lang">C++</span>
+                </div>
+                <div class="editor-body">
+                  <div class="editor-lines">
+                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+                  </div>
+                  <textarea id="q18" name="q18" class="editor-textarea" placeholder="// Escribe tu código C++ aquí...
+#include <iostream>
+using namespace std;
+
+int main() {
+    
+}"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q19 -->
+            <div class="coding-card">
+              <div class="coding-card-title">
+                <span class="q-badge">19</span>
+                <p>Escribe un programa donde el usuario haga <strong>2 operaciones</strong> como suma, resta, multiplicación, etc.</p>
+              </div>
+              <div class="editor-simulator">
+                <div class="editor-header">
+                  <span class="editor-title"><i class="ti ti-brand-cpp"></i> programa2.cpp</span>
+                  <span class="editor-lang">C++</span>
+                </div>
+                <div class="editor-body">
+                  <div class="editor-lines">
+                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+                  </div>
+                  <textarea id="q19" name="q19" class="editor-textarea" placeholder="// Escribe tu código C++ aquí...
+#include <iostream>
+using namespace std;
+
+int main() {
+    
+}"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q20 -->
+            <div class="coding-card">
+              <div class="coding-card-title">
+                <span class="q-badge">20</span>
+                <p>Escribe un programa que muestre la calificación de <strong>3 alumnos</strong> de <strong>3 materias</strong> con su promedio.</p>
+              </div>
+              <div class="editor-simulator">
+                <div class="editor-header">
+                  <span class="editor-title"><i class="ti ti-brand-cpp"></i> programa3.cpp</span>
+                  <span class="editor-lang">C++</span>
+                </div>
+                <div class="editor-body">
+                  <div class="editor-lines">
+                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+                  </div>
+                  <textarea id="q20" name="q20" class="editor-textarea" placeholder="// Escribe tu código C++ aquí...
+#include <iostream>
+using namespace std;
+
+int main() {
+    
+}"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </form>
+
+      <!-- NAVIGATION BUTTONS -->
+      <div class="navigation-controls">
+        <button type="button" id="prev-btn" class="btn btn-secondary disabled" disabled>
+          <i class="ti ti-chevron-left"></i> Anterior
+        </button>
+        <button type="button" id="next-btn" class="btn btn-primary">
+          Siguiente <i class="ti ti-chevron-right"></i>
+        </button>
+        <button type="button" id="submit-btn" class="btn btn-success hidden">
+          Enviar Examen <i class="ti ti-cloud-upload"></i>
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- SUCCESS / RESULTS SCREEN -->
+  <div id="success-screen" class="screen">
+    <div class="success-card">
+      <div class="success-icon">
+        <i class="ti ti-circle-check"></i>
+      </div>
+      <h1 class="success-title">¡Examen Entregado!</h1>
+      <p class="success-message">Tu examen ha sido guardado exitosamente en el sistema.</p>
+      
+      <div class="score-card">
+        <span class="score-label">Puntaje Automático Preliminar</span>
+        <div class="score-value-container">
+          <span id="final-score-value" class="score-val">0</span>
+          <span class="score-max">/ 20 pts</span>
+        </div>
+        <p class="score-note">El profesor revisará tus respuestas de las secciones escritas y de programación (38 puntos restantes) para asignarte tu calificación definitiva sobre 100.</p>
+      </div>
+
+      <div class="student-info-row">
+        <span>Estudiante:</span>
+        <strong id="summary-student-name">Juan Pérez</strong>
+      </div>
+      <div class="student-info-row">
+        <span>Fecha de entrega:</span>
+        <strong id="summary-date">10/06/2026 17:30</strong>
+      </div>
+
+      <p class="exit-instruction">Ya puedes cerrar esta ventana. Tu examen está en revisión.</p>
+    </div>
+  </div>
+
+  <!-- TEACHER PANEL SCREEN -->
+  <div id="teacher-screen" class="screen">
+    <header class="topbar teacher-bar">
+      <div class="topbar-left">
+        <i class="ti ti-shield-lock"></i>
+        <span class="topbar-brand">Black IA</span>
+        <div class="divider-y"></div>
+        <span class="topbar-title">Panel del Profesor</span>
+      </div>
+      <div class="topbar-right">
+        <button type="button" id="logout-teacher-btn" class="btn btn-secondary btn-sm">
+          <i class="ti ti-logout"></i> Salir del Panel
+        </button>
+      </div>
+    </header>
+
+    <div class="teacher-container">
+      <div class="teacher-grid">
+        <!-- Sidebar: Submissions list -->
+        <aside class="submissions-sidebar">
+          <div class="sidebar-header">
+            <h3>Entregas Recibidas</h3>
+            <span id="submissions-count" class="badge">0</span>
+          </div>
+          <div id="submissions-list" class="submissions-list">
+            <div class="loading-state">
+              <i class="ti ti-loader-2 spin"></i>
+              <p>Cargando entregas...</p>
+            </div>
+            <!-- Dynamic entries go here -->
+          </div>
+        </aside>
+
+        <!-- Main Workspace: Detail & Grading -->
+        <main id="grading-workspace" class="grading-workspace">
+          <div class="no-selection-state">
+            <i class="ti ti-clipboard-list"></i>
+            <h3>Selecciona un examen</h3>
+            <p>Elige un estudiante de la lista de la izquierda para ver su examen y calificar las respuestas abiertas.</p>
+          </div>
+          
+          <!-- grading-detail (populated by JS) -->
+          <div id="grading-detail" class="grading-detail hidden">
+            <!-- Student Header Info -->
+            <div class="student-header-detail">
+              <div>
+                <h2 id="grade-student-name">Estudiante Nombre</h2>
+                <p class="date-str" id="grade-submission-date"><i class="ti ti-calendar"></i> Entregado el 10/06/2026</p>
+              </div>
+              <div class="grade-box">
+                <span class="grade-label">Calificación Actual</span>
+                <div class="grade-value-wrapper">
+                  <span id="grade-total-score" class="grade-big">0</span>
+                  <span class="grade-max">/ 100</span>
+                </div>
+                <span id="grade-raw-score" class="grade-raw">0 / 58 pts brutos</span>
+              </div>
+            </div>
+
+            <!-- Navigation between questions in grading -->
+            <div class="grading-tabs">
+              <button class="g-tab-btn active" data-tab="answers">Examen del Alumno</button>
+              <button class="g-tab-btn" data-tab="grading-panel">Panel de Calificación</button>
+            </div>
+
+            <!-- Tab: Answers -->
+            <div id="g-tab-content-answers" class="g-tab-content active">
+              <!-- Section I and II Summary -->
+              <div class="grading-section-box">
+                <h3>Secciones Automáticas (Opción Múltiple y Columnas)</h3>
+                <div class="summary-grid">
+                  <div class="summary-chip success">
+                    <span class="lbl">Sección I (Preguntas 1-6)</span>
+                    <strong id="summary-section-1-score">0 / 6 pts</strong>
+                  </div>
+                  <div class="summary-chip success">
+                    <span class="lbl">Sección II (Columnas 7-10)</span>
+                    <strong id="summary-section-2-score">0 / 8 pts</strong>
+                  </div>
+                  <div class="summary-chip success">
+                    <span class="lbl">Sección IV (Salida 15-17)</span>
+                    <strong id="summary-section-4-score">0 / 6 pts</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section III: Explanation Answers -->
+              <div class="grading-section-box">
+                <h3>Sección III. Explicación de Código</h3>
+                
+                <div class="qa-item">
+                  <div class="qa-q">Línea 11: <code>int edad;</code></div>
+                  <div class="qa-a" id="ans-q11">Respuesta del alumno</div>
+                </div>
+                
+                <div class="qa-item">
+                  <div class="qa-q">Línea 12: <code>cout &lt;&lt; "Ingresa tu edad: ";</code></div>
+                  <div class="qa-a" id="ans-q12">Respuesta del alumno</div>
+                </div>
+                
+                <div class="qa-item">
+                  <div class="qa-q">Línea 13: <code>cin &gt;&gt; edad;</code></div>
+                  <div class="qa-a" id="ans-q13">Respuesta del alumno</div>
+                </div>
+                
+                <div class="qa-item">
+                  <div class="qa-q">Línea 14: <code>if(edad &gt;= 18)</code></div>
+                  <div class="qa-a" id="ans-q14">Respuesta del alumno</div>
+                </div>
+              </div>
+
+              <!-- Section V: Written Code -->
+              <div class="grading-section-box">
+                <h3>Sección V. Programas Escritos (C++)</h3>
+                
+                <div class="code-grading-item">
+                  <h4>Programa 18: Datos de Usuario (Nombre, edad, país)</h4>
+                  <pre class="code-display"><code id="ans-q18" class="code-block">// Código del alumno</code></pre>
+                </div>
+                
+                <div class="code-grading-item">
+                  <h4>Programa 19: Operaciones Matemáticas</h4>
+                  <pre class="code-display"><code id="ans-q19" class="code-block">// Código del alumno</code></pre>
+                </div>
+                
+                <div class="code-grading-item">
+                  <h4>Programa 20: Calificaciones de Alumnos e Historial</h4>
+                  <pre class="code-display"><code id="ans-q20" class="code-block">// Código del alumno</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab: Grading Panel -->
+            <div id="g-tab-content-grading-panel" class="g-tab-content">
+              <div class="grading-section-box">
+                <h3>Asignación de Puntos Manuales</h3>
+                <p class="grading-instruction">Califica el desempeño del alumno en las preguntas abiertas. Los cambios se reflejarán inmediatamente en la calificación total final.</p>
+                
+                <form id="grading-scores-form">
+                  <!-- Grading Section III -->
+                  <div class="grading-criteria-group">
+                    <h4>Sección III. Explicación de Código (Máximo 8 puntos)</h4>
+                    
+                    <div class="grading-row-item">
+                      <div class="item-desc">
+                        <h5>Pregunta 11 (int edad;)</h5>
+                        <p class="student-snippet" id="snippet-q11">"Respuesta..."</p>
+                      </div>
+                      <div class="item-control">
+                        <input type="number" id="score-q11" min="0" max="2" step="0.5" class="score-input">
+                        <span class="max-pts">/ 2 pts</span>
+                      </div>
+                    </div>
+                    
+                    <div class="grading-row-item">
+                      <div class="item-desc">
+                        <h5>Pregunta 12 (cout &lt;&lt; "Ingresa tu edad:";)</h5>
+                        <p class="student-snippet" id="snippet-q12">"Respuesta..."</p>
+                      </div>
+                      <div class="item-control">
+                        <input type="number" id="score-q12" min="0" max="2" step="0.5" class="score-input">
+                        <span class="max-pts">/ 2 pts</span>
+                      </div>
+                    </div>
+                    
+                    <div class="grading-row-item">
+                      <div class="item-desc">
+                        <h5>Pregunta 13 (cin &gt;&gt; edad;)</h5>
+                        <p class="student-snippet" id="snippet-q13">"Respuesta..."</p>
+                      </div>
+                      <div class="item-control">
+                        <input type="number" id="score-q13" min="0" max="2" step="0.5" class="score-input">
+                        <span class="max-pts">/ 2 pts</span>
+                      </div>
+                    </div>
+                    
+                    <div class="grading-row-item">
+                      <div class="item-desc">
+                        <h5>Pregunta 14 (if(edad &gt;= 18))</h5>
+                        <p class="student-snippet" id="snippet-q14">"Respuesta..."</p>
+                      </div>
+                      <div class="item-control">
+                        <input type="number" id="score-q14" min="0" max="2" step="0.5" class="score-input">
+                        <span class="max-pts">/ 2 pts</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Grading Section V -->
+                  <div class="grading-criteria-group">
+                    <h4>Sección V. Programas Escritos (Máximo 30 puntos)</h4>
+                    
+                    <div class="grading-row-item-vertical">
+                      <div class="item-desc">
+                        <h5>Programa 18: Datos de Usuario (10 pts máx)</h5>
+                        <textarea readonly class="student-code-preview" id="snippet-q18"></textarea>
+                      </div>
+                      <div class="item-control-bottom">
+                        <div class="points-picker">
+                          <button type="button" class="btn-pt" onclick="setPoints('score-q18', 0)">0</button>
+                          <button type="button" class="btn-pt" onclick="setPoints('score-q18', 5)">5</button>
+                          <button type="button" class="btn-pt" onclick="setPoints('score-q18', 8)">8</button>
+                          <button type="button" class="btn-pt" onclick="setPoints('score-q18', 10)">10</button>
+                        </div>
+                        <div class="input-pts-wrap">
+                          <input type="number" id="score-q18" min="0" max="10" step="1" class="score-input-large">
+                          <span class="max-pts">/ 10 pts</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="grading-row-item-vertical">
+                      <div class="item-desc">
+                        <h5>Programa 19: Operaciones Matemáticas (10 pts máx)</h5>
+                        <textarea readonly class="student-code-preview" id="snippet-q19"></textarea>
+                      </div>
+                      <div class="item-control-bottom">
+                        <div class="points-picker">
+                          <button type="button" class="btn-pt" onclick="setPoints('score-q19', 0)">0</button>
+                          <button type="button" class="btn-pt" onclick="setPoints('score-q19', 5)">5</button>
+                          <button type="button" class="btn-pt" onclick="setPoints('score-q19', 8)">8</button>
+                          <button type="button" class="btn-pt" onclick="setPoints('score-q19', 10)">10</button>
+                        </div>
+                        <div class="input-pts-wrap">
+                          <input type="number" id="score-q19" min="0" max="10" step="1" class="score-input-large">
+                          <span class="max-pts">/ 10 pts</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="grading-row-item-vertical">
+                      <div class="item-desc">
+                        <h5>Programa 20: Promedio Calificaciones (10 pts máx)</h5>
+                        <textarea readonly class="student-code-preview" id="snippet-q20"></textarea>
+                      </div>
+                      <div class="item-control-bottom">
+                        <div class="points-picker">
+                          <button type="button" class="btn-pt" onclick="setPoints('score-q20', 0)">0</button>
+                          <button type="button" class="btn-pt" onclick="setPoints('score-q20', 5)">5</button>
+                          <button type="button" class="btn-pt" onclick="setPoints('score-q20', 8)">8</button>
+                          <button type="button" class="btn-pt" onclick="setPoints('score-q20', 10)">10</button>
+                        </div>
+                        <div class="input-pts-wrap">
+                          <input type="number" id="score-q20" min="0" max="10" step="1" class="score-input-large">
+                          <span class="max-pts">/ 10 pts</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Grading Actions -->
+                  <div class="grading-submit-bar">
+                    <div class="new-score-preview">
+                      <span>Nueva Calificación:</span>
+                      <strong id="new-grade-display">0 / 100</strong>
+                    </div>
+                    <button type="button" id="save-grades-btn" class="btn btn-success">
+                      <span>Guardar Calificación</span> <i class="ti ti-device-floppy"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN CREDENTIALS MODAL -->
+  <div id="admin-modal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="ti ti-shield-lock"></i> Acceso Administrador</h3>
+        <button type="button" class="btn-close-modal" id="close-admin-modal-btn">
+          <i class="ti ti-x"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-instruction">Ingresa la contraseña del profesor para acceder al panel de calificación.</p>
+        <div class="form-group">
+          <label for="admin-password">Contraseña del Docente</label>
+          <input type="password" id="admin-password" placeholder="••••••••" autocomplete="current-password">
+          <div id="admin-error" class="error-message"><i class="ti ti-alert-circle"></i> Contraseña incorrecta. Inténtalo de nuevo.</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="cancel-admin-btn">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="confirm-admin-btn">Ingresar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMISSION CONFIRMATION MODAL -->
+  <div id="confirm-submit-modal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="ti ti-alert-triangle"></i> Entregar Examen</h3>
+      </div>
+      <div class="modal-body">
+        <p>¿Estás seguro de que deseas finalizar y entregar tu examen? Una vez enviado no podrás modificar tus respuestas.</p>
+        <p class="sub-alert">El sistema guardará tu nombre, tus respuestas y tu puntuación preliminar automática.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="cancel-submit-btn">Seguir respondiendo</button>
+        <button type="button" class="btn btn-success" id="confirm-submit-btn">Sí, Entregar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST / FLOATING ALERTS -->
+  <div id="toast" class="toast-alert"></div>
+
+  <!-- LOADING OVERLAY -->
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="loading-box">
+      <i class="ti ti-loader-2 spin loader-icon"></i>
+      <h3 id="loading-text">Conectando...</h3>
+      <p>Espera un momento, por favor.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 Black IA · Plataforma de Evaluación de Alumnos</p>
+    <button type="button" id="admin-trigger" class="admin-trigger" title="Acceso Profesor">
+      <i class="ti ti-lock"></i> Panel Profesor
+    </button>
+  </footer>
+
+  <!-- Firebase JavaScript SDKs -->
+  <script type="module" src="app.js"></script>
+
+</body>
+</html>
