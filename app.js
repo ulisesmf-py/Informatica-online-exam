@@ -799,3 +799,14 @@ function showToast(message, type = "info") {
     toast.classList.remove("show");
   }, 3000);
 }
+// ==========================================================================
+// EXPORTAR FUNCIONES AL ÁMBITO GLOBAL PARA QUE FUNCIONE EL PANEL
+// ==========================================================================
+window.renderSubmissionsList = renderSubmissionsList;
+window.loadSubmissionDetails = loadSubmissionDetails;
+window.selectSubmission = selectSubmission;
+window.calculateSection1AutoScore = calculateSection1AutoScore;
+window.calculateSection2AutoScore = calculateSection2AutoScore;
+window.calculateSection4AutoScore = calculateSection4AutoScore;
+window.calculateNewGradingScore = calculateNewGradingScore;
+window.setPoints = setPoints;
