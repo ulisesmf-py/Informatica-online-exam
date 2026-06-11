@@ -531,16 +531,20 @@ function renderSubmissionsList() {
   
   container.innerHTML = entries.map(([key, sub]) => {
     const activeClass = selectedSubmissionId === key ? "active" : "";
-    const statusClass = sub.status.toLowerCase();
+    // CORREGIDO: Verificar que status existe, si no usar "Entregado"
+    const statusText = sub.status || "Entregado";
+    const statusClass = statusText === "Calificado" ? "calificado" : "entregado";
+    // CORREGIDO: Asegurar que finalGrade100 existe
+    const gradeDisplay = sub.finalGrade100 !== undefined ? sub.finalGrade100 : "0";
     
     return `
       <div class="sub-item ${activeClass}" onclick="selectSubmission('${key}')">
         <div class="sub-item-info">
-          <span class="sub-student-name">${sub.studentName}</span>
-          <span class="sub-date">${sub.dateStr}</span>
-          <span class="sub-status-tag ${statusClass}">${sub.status}</span>
+          <span class="sub-student-name">${sub.studentName || "Sin nombre"}</span>
+          <span class="sub-date">${sub.dateStr || new Date(sub.timestamp).toLocaleString()}</span>
+          <span class="sub-status-tag ${statusClass}">${statusText}</span>
         </div>
-        <div class="sub-grade-pill">${sub.finalGrade100}</div>
+        <div class="sub-grade-pill">${gradeDisplay}</div>
       </div>
     `;
   }).join("");
@@ -573,7 +577,8 @@ function loadSubmissionDetails(key) {
   
   // Fill text fields
   document.getElementById("grade-student-name").textContent = sub.studentName;
-  document.getElementById("grade-submission-date").innerHTML = `<i class="ti ti-calendar"></i> Entregado el ${sub.dateStr} | ID: <code>${sub.id}</code>`;
+  const safeDateStr = sub.dateStr || new Date(sub.timestamp).toLocaleString("es-MX", { dateStyle: "short", timeStyle: "short" });
+  document.getElementById("grade-submission-date").innerHTML = `<i class="ti ti-calendar"></i> Entregado el ${safeDateStr} | ID: <code>${sub.id || key}</code>`;
   document.getElementById("grade-total-score").textContent = sub.finalGrade100;
   document.getElementById("grade-raw-score").textContent = `${sub.totalScoreRaw} / 58 pts brutos`;
   
