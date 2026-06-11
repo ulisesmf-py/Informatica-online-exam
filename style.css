@@ -1916,3 +1916,38 @@ body {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+/* ==========================================================================
+   FIX PARA EL PANEL DEL PROFESOR - FORZAR VISIBILIDAD
+   ========================================================================== */
+#grading-detail {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.grading-workspace {
+  overflow: visible !important;
+  display: block !important;
+}
+
+.no-selection-state {
+  display: none !important;
+}
+
+.submissions-sidebar {
+  display: flex !important;
+  min-height: 400px;
+  overflow: visible !important;
+}
+
+.submissions-list {
+  display: block !important;
+  overflow-y: auto !important;
+}
+
+.teacher-grid {
+  display: grid !important;
+  grid-template-columns: 320px 1fr !important;
+  gap: 20px !important;
+  min-height: 500px !important;
+}
