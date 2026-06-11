@@ -471,23 +471,27 @@ function authenticateAdmin() {
 function enterTeacherPanel() {
   showLoading("Cargando Panel del Profesor...", true);
   
-  // Query all submissions in /temporal
   const temporalRef = ref(db, "temporal");
   
-  // Set up real-time listener for submissions list
   onValue(temporalRef, (snapshot) => {
-    dbSubmissions = snapshot.val() || {};
+    const data = snapshot.val() || {};
+    console.log("🔍 DATOS RECIBIDOS:", Object.keys(data).length, "exámenes");
     
-    // Switch Screen to Teacher Panel
-    const activeScreen = document.querySelector(".screen.active");
-    if (activeScreen && activeScreen.id !== "teacher-screen") {
-      switchScreen(activeScreen.id, "teacher-screen");
-    }
+    dbSubmissions = data;
+    
+    // Cambiar pantalla directamente
+    document.getElementById("welcome-screen").classList.remove("active");
+    document.getElementById("exam-screen").classList.remove("active");
+    document.getElementById("success-screen").classList.remove("active");
+    document.getElementById("teacher-screen").classList.add("active");
+    document.getElementById("teacher-screen").style.opacity = "1";
     
     showLoading("", false);
+    
+    // Renderizar la lista
     renderSubmissionsList();
     
-    // Re-render detail view if active
+    // Si hay un examen seleccionado, cargarlo
     if (selectedSubmissionId && dbSubmissions[selectedSubmissionId]) {
       loadSubmissionDetails(selectedSubmissionId);
     }
@@ -508,12 +512,21 @@ function logoutTeacher() {
   showToast("Sesión de docente finalizada.", "info");
 }
 
-// Render Sidebar of exams
+// Render Sidebar of exams - VERSIÓN CORREGIDA
 function renderSubmissionsList() {
+  console.log("🎨 Renderizando lista, datos:", dbSubmissions);
+  
   const container = document.getElementById("submissions-list");
   const countBadge = document.getElementById("submissions-count");
   
+  if (!container) {
+    console.error("❌ No se encontró el elemento submissions-list");
+    return;
+  }
+  
   const entries = Object.entries(dbSubmissions);
+  console.log("📊 Cantidad de entradas:", entries.length);
+  
   countBadge.textContent = entries.length;
   
   if (entries.length === 0) {
@@ -527,27 +540,37 @@ function renderSubmissionsList() {
   }
   
   // Sort submissions by timestamp descending (newest first)
-  entries.sort((a, b) => b[1].timestamp - a[1].timestamp);
+  entries.sort((a, b) => (b[1].timestamp || 0) - (a[1].timestamp || 0));
   
   container.innerHTML = entries.map(([key, sub]) => {
     const activeClass = selectedSubmissionId === key ? "active" : "";
-    // CORREGIDO: Verificar que status existe, si no usar "Entregado"
     const statusText = sub.status || "Entregado";
     const statusClass = statusText === "Calificado" ? "calificado" : "entregado";
-    // CORREGIDO: Asegurar que finalGrade100 existe
-    const gradeDisplay = sub.finalGrade100 !== undefined ? sub.finalGrade100 : "0";
+    const gradeDisplay = (sub.finalGrade100 !== undefined && sub.finalGrade100 !== null) ? sub.finalGrade100 : "0";
+    const studentName = sub.studentName || "Sin nombre";
+    const dateStr = sub.dateStr || "Fecha no disponible";
     
     return `
       <div class="sub-item ${activeClass}" onclick="selectSubmission('${key}')">
         <div class="sub-item-info">
-          <span class="sub-student-name">${sub.studentName || "Sin nombre"}</span>
-          <span class="sub-date">${sub.dateStr || new Date(sub.timestamp).toLocaleString()}</span>
+          <span class="sub-student-name">${escapeHtml(studentName)}</span>
+          <span class="sub-date">${escapeHtml(dateStr)}</span>
           <span class="sub-status-tag ${statusClass}">${statusText}</span>
         </div>
         <div class="sub-grade-pill">${gradeDisplay}</div>
       </div>
     `;
   }).join("");
+  
+  console.log("✅ Lista renderizada, items:", entries.length);
+}
+
+// Función auxiliar para evitar problemas con caracteres especiales
+function escapeHtml(text) {
+  if (!text) return "";
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
 }
 
 // Global scope binding for sidebar item click
